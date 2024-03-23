@@ -1,0 +1,15 @@
+// esquema de cores
+
+$corPrincipal: #1971c2;
+$corSecundaria: #171a49;
+
+$textColorPrincipal: #fff;
+$textColorSecundaria: #000;
+
+// mixin
+
+@mixin styleTitle() {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
