@@ -1,9 +1,20 @@
 <script setup>
+import { ref } from 'vue'
 import DadosClientes from './components/DadosCliente.vue'
 import DadosProdutos from './components/DadosProdutos.vue'
+import DadosClienteProduto from './components/DadosClienteProduto.vue'
 import CadastraCliente from './components/CadastraCliente.vue'
-</script>
 
+const componenteVisivel = ref('')
+
+function mostrarComponente(componente) {
+  if (componenteVisivel.value === componente) {
+    componenteVisivel.value = ''
+  } else {
+    componenteVisivel.value = componente
+  }
+}
+</script>
 <template>
   <div class="container_pagina">
     <header class="header mb-5">
@@ -11,8 +22,32 @@ import CadastraCliente from './components/CadastraCliente.vue'
     </header>
     <div class="container">
       <CadastraCliente />
-      <DadosClientes />
-      <DadosProdutos />
+      <div class="buttons">
+        <button
+          class="buttons-button btn btn-secondary m-5"
+          @click="mostrarComponente('DadosClientes')"
+          type="button"
+        >
+          Clientes
+        </button>
+        <button
+          class="buttons-button btn btn-secondary m-5"
+          @click="mostrarComponente('ClienteProduto')"
+          type="button"
+        >
+          Cliente e seus produtos
+        </button>
+        <button
+          class="buttons-button btn btn-secondary m-5"
+          @click="mostrarComponente('DadosProdutos')"
+          type="button"
+        >
+          Produtos
+        </button>
+      </div>
+      <DadosClientes v-if="componenteVisivel === 'DadosClientes'" />
+      <DadosClienteProduto v-if="componenteVisivel === 'ClienteProduto'" />
+      <DadosProdutos v-if="componenteVisivel === 'DadosProdutos'" />
     </div>
     <footer class="footer">
       <div class="container footer_container">
@@ -40,11 +75,15 @@ import CadastraCliente from './components/CadastraCliente.vue'
 
 .container_pagina {
   min-height: 100vh;
+  position: relative;
 }
 
 .header {
   background-color: $corPrincipal;
   text-align: center;
+  position: sticky;
+  top: 0;
+  left: 0;
 
   &_title {
     color: $textColorPrincipal;
@@ -52,11 +91,17 @@ import CadastraCliente from './components/CadastraCliente.vue'
   }
 }
 
+.buttons {
+  display: block;
+  text-align: center;
+}
+
 .footer {
   background-color: $corPrincipal;
   margin-top: 80px;
   padding: 10px;
   bottom: 0;
+  position: absolute;
   width: 100%;
   height: 3em;
 

@@ -4,7 +4,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Ativo</th>
+          <th scope="col">Ativo / Inativo</th>
           <th scope="col">Nome</th>
         </tr>
       </thead>
@@ -14,8 +14,8 @@
           <td>Programa de Cadastro de clientes e seus produtos</td>
         </tr>
         <tr>
-          <td>Inativo</td>
-          <td>Software para coletor de estoque</td>
+          <td>{{}}</td>
+          <td>{{}}</td>
         </tr>
       </tbody>
     </table>
