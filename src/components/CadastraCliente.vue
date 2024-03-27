@@ -14,12 +14,18 @@ const cliente = ref({
 })
 
 const adicionarNovoCliente = () => {
-  const clienteParaAdicionar = JSON.parse(JSON.stringify(cliente.value))
-  store.dispatch('adicionarCliente', clienteParaAdicionar)
-  console.log(clienteParaAdicionar)
+  const valor = cliente.value.ativo.toLowerCase()
 
-  for (let prop in cliente.value) {
-    cliente.value[prop] = ''
+  if (valor === 'sim' || valor === 'não') {
+    const clienteParaAdicionar = JSON.parse(JSON.stringify(cliente.value))
+    store.dispatch('adicionarCliente', clienteParaAdicionar)
+    console.log(clienteParaAdicionar)
+
+    for (let prop in cliente.value) {
+      cliente.value[prop] = ''
+    }
+  } else {
+    alert('No campo "Cliente ativo?", digite apenas "Sim" ou "Não!')
   }
 }
 </script>
@@ -27,50 +33,45 @@ const adicionarNovoCliente = () => {
   <div class="container">
     <form class="form" @submit.prevent="adicionarNovoCliente">
       <h2>Dados do cliente</h2>
+      <input v-model="cliente.nome" class="form-control" type="text" placeholder="Nome" required />
       <input
-        v-model.lazy="cliente.nome"
-        class="form-control"
-        type="text"
-        placeholder="Nome"
-        required
-      />
-      <input
-        v-model.lazy="cliente.telefone"
+        v-model="cliente.telefone"
         class="form-control"
         type="text"
         placeholder="Telefone"
         required
       />
       <input
-        v-model.lazy="cliente.documento"
+        v-model="cliente.documento"
         class="form-control"
         type="text"
         placeholder="Documento"
         required
       />
       <input
-        v-model.lazy="cliente.email"
+        v-model="cliente.email"
         class="form-control"
         type="text"
         placeholder="E-mail"
         required
       />
       <input
-        v-model.lazy="cliente.ativo"
+        v-model="cliente.ativo"
+        @input="checarValor"
         class="form-control"
         type="text"
         placeholder="Cliente Ativo ? (Sim ou Não)"
       />
       <h2>Produto do cliente</h2>
       <input
-        v-model.lazy="cliente.nomeProduto"
+        v-model="cliente.nomeProduto"
         class="form-control"
         type="text"
         placeholder="Nome do Produto"
         required
       />
       <input
-        v-model.lazy="cliente.produtoAtivo"
+        v-model="cliente.produtoAtivo"
         class="form-control"
         type="text"
         placeholder="Produto ativo ? (Sim ou Não)"
