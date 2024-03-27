@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+
+const store = useStore()
+
+const clientes = computed(() => store.getters.clientes)
+</script>
 <template>
   <div class="container">
     <h2 class="title">Clientes</h2>
@@ -13,75 +20,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-          <td>teste</td>
-        </tr>
-        <tr>
-          <td scope="row">{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
+        <tr v-for="cliente in clientes" :key="cliente.id">
+          <td scope="row">{{ cliente.ativo }}</td>
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.telefone }}</td>
+          <td>{{ cliente.documento }}</td>
+          <td>{{ cliente.email }}</td>
         </tr>
       </tbody>
     </table>

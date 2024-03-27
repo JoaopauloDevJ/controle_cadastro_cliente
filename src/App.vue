@@ -16,38 +16,40 @@ function mostrarComponente(componente) {
 }
 </script>
 <template>
-  <div class="container_pagina">
-    <header class="header mb-5">
-      <h1 class="header_title pt-3 pb-3">Cadastro de clientes e seus produtos!</h1>
-    </header>
-    <div class="container">
-      <CadastraCliente />
-      <div class="buttons">
-        <button
-          class="buttons-button btn btn-secondary m-5"
-          @click="mostrarComponente('DadosClientes')"
-          type="button"
-        >
-          Clientes
-        </button>
-        <button
-          class="buttons-button btn btn-secondary m-5"
-          @click="mostrarComponente('ClienteProduto')"
-          type="button"
-        >
-          Cliente e seus produtos
-        </button>
-        <button
-          class="buttons-button btn btn-secondary m-5"
-          @click="mostrarComponente('DadosProdutos')"
-          type="button"
-        >
-          Produtos
-        </button>
+  <body>
+    <div class="container_pagina">
+      <header class="header mb-5">
+        <h1 class="header_title pt-3 pb-3">Cadastro de clientes e seus produtos!</h1>
+      </header>
+      <div class="container">
+        <CadastraCliente />
+        <div class="buttons">
+          <button
+            class="buttons-button btn btn-secondary m-5"
+            @click="mostrarComponente('DadosClientes')"
+            type="button"
+          >
+            Clientes
+          </button>
+          <button
+            class="buttons-button btn btn-secondary m-5"
+            @click="mostrarComponente('ClienteProduto')"
+            type="button"
+          >
+            Cliente e seus produtos
+          </button>
+          <button
+            class="buttons-button btn btn-secondary m-5"
+            @click="mostrarComponente('DadosProdutos')"
+            type="button"
+          >
+            Produtos
+          </button>
+        </div>
+        <DadosClientes v-if="componenteVisivel === 'DadosClientes'" />
+        <DadosClienteProduto v-if="componenteVisivel === 'ClienteProduto'" />
+        <DadosProdutos v-if="componenteVisivel === 'DadosProdutos'" />
       </div>
-      <DadosClientes v-if="componenteVisivel === 'DadosClientes'" />
-      <DadosClienteProduto v-if="componenteVisivel === 'ClienteProduto'" />
-      <DadosProdutos v-if="componenteVisivel === 'DadosProdutos'" />
     </div>
     <footer class="footer">
       <div class="container footer_container">
@@ -60,7 +62,7 @@ function mostrarComponente(componente) {
         </div>
       </div>
     </footer>
-  </div>
+  </body>
 </template>
 
 <style lang="scss" scoped>
@@ -75,7 +77,6 @@ function mostrarComponente(componente) {
 
 .container_pagina {
   min-height: 100vh;
-  position: relative;
 }
 
 .header {
@@ -101,7 +102,6 @@ function mostrarComponente(componente) {
   margin-top: 80px;
   padding: 10px;
   bottom: 0;
-  position: absolute;
   width: 100%;
   height: 3em;
 

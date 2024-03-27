@@ -1,3 +1,11 @@
+<script setup>
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+
+const store = useStore()
+
+const clientes = computed(() => store.getters.clientes)
+</script>
 <template>
   <div class="container">
     <h2 class="title">Produtos</h2>
@@ -9,13 +17,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Ativo</td>
-          <td>Programa de Cadastro de clientes e seus produtos</td>
-        </tr>
-        <tr>
-          <td>{{}}</td>
-          <td>{{}}</td>
+        <tr v-for="cliente in clientes" :key="cliente.id">
+          <td>{{ cliente.nomeProduto }}</td>
+          <td>{{ cliente.produtoAtivo }}</td>
         </tr>
       </tbody>
     </table>

@@ -1,78 +1,76 @@
 <script setup>
 import { ref } from 'vue'
-import { reactive } from 'vue'
+import { useStore } from 'vuex'
 
-const dadosCliente = reactive({
-  ativoInativo: '',
+const store = useStore()
+const cliente = ref({
+  ativo: '',
   nome: '',
   telefone: '',
   documento: '',
   email: '',
   nomeProduto: '',
-  statusProduto: ''
+  produtoAtivo: ''
 })
 
-const resetDadosCliente = () => {
-  for (let prop in dadosCliente) {
-    dadosCliente[prop] = ''
+const adicionarNovoCliente = () => {
+  const clienteParaAdicionar = JSON.parse(JSON.stringify(cliente.value))
+  store.dispatch('adicionarCliente', clienteParaAdicionar)
+  console.log(clienteParaAdicionar)
+
+  for (let prop in cliente.value) {
+    cliente.value[prop] = ''
   }
-}
-
-const clientes = ref([])
-
-const adicionarCliente = () => {
-  clientes.value.push(dadosCliente)
-  resetDadosCliente()
 }
 </script>
 <template>
   <div class="container">
-    <form class="form" @submit.prevent="adicionarCliente">
+    <form class="form" @submit.prevent="adicionarNovoCliente">
       <h2>Dados do cliente</h2>
       <input
-        v-model="dadosCliente.nome"
+        v-model.lazy="cliente.nome"
         class="form-control"
         type="text"
         placeholder="Nome"
         required
       />
       <input
-        v-model="dadosCliente.telefone"
+        v-model.lazy="cliente.telefone"
         class="form-control"
         type="text"
         placeholder="Telefone"
         required
       />
       <input
-        v-model="dadosCliente.documento"
+        v-model.lazy="cliente.documento"
         class="form-control"
         type="text"
         placeholder="Documento"
         required
       />
       <input
-        v-model="dadosCliente.email"
+        v-model.lazy="cliente.email"
         class="form-control"
         type="text"
         placeholder="E-mail"
         required
       />
       <input
-        v-model="dadosCliente.ativoInativo"
+        v-model.lazy="cliente.ativo"
         class="form-control"
         type="text"
         placeholder="Cliente Ativo ? (Sim ou Não)"
       />
       <h2>Produto do cliente</h2>
       <input
-        v-model="dadosCliente.nomeProduto"
+        v-model.lazy="cliente.nomeProduto"
         class="form-control"
         type="text"
         placeholder="Nome do Produto"
         required
       />
       <input
-        v-model="dadosCliente.statusProduto"
+        v-model.lazy="cliente.produtoAtivo"
         class="form-control"
         type="text"
         placeholder="Produto ativo ? (Sim ou Não)"
