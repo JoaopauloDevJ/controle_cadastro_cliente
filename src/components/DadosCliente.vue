@@ -15,8 +15,15 @@ const abrirFormularioEdicao = (cliente) => {
 }
 
 const editarCliente = (cliente) => {
-  store.dispatch('editarCliente', cliente)
-  formAberto.value = false
+  if (
+    (cliente.ativo.toLowerCase() !== 'sim' && cliente.ativo.toLowerCase() !== 'não') ||
+    (cliente.produtoAtivo.toLowerCase() !== 'sim' && cliente.produtoAtivo.toLowerCase() !== 'não')
+  ) {
+    alert('Status inválido. Por favor digita "Sim" ou "Não" !')
+  } else {
+    store.dispatch('editarCliente', cliente)
+    formAberto.value = false
+  }
 }
 </script>
 <template>

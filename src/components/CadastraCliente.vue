@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { v4 as uuidv4 } from 'uuid'
 
 const store = useStore()
 const cliente = ref({
@@ -23,6 +24,7 @@ const adicionarNovoCliente = () => {
     alert('No campo "Produto ativo?", digite apenas "Sim" ou "Não" !')
   } else {
     const clienteParaAdicionar = JSON.parse(JSON.stringify(cliente.value))
+    clienteParaAdicionar.id = uuidv4()
     store.dispatch('adicionarCliente', clienteParaAdicionar)
     console.log(clienteParaAdicionar)
 
@@ -60,7 +62,6 @@ const adicionarNovoCliente = () => {
       />
       <input
         v-model="cliente.ativo"
-        @input="checarValor"
         class="form-control"
         type="text"
         placeholder="Cliente Ativo ? (Sim ou Não)"
@@ -75,7 +76,6 @@ const adicionarNovoCliente = () => {
       />
       <input
         v-model="cliente.produtoAtivo"
-        @input="checarValor"
         class="form-control"
         type="text"
         placeholder="Produto ativo ? (Sim ou Não)"
