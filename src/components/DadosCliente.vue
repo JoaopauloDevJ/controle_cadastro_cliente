@@ -8,6 +8,7 @@ const store = useStore()
 const clientes = computed(() => store.getters.clientes)
 const formAberto = ref(false)
 const clienteEditando = ref(null)
+const clientesRenderizados = ref([...clientes.value])
 
 const abrirFormularioEdicao = (cliente) => {
   clienteEditando.value = { ...cliente }
@@ -24,6 +25,11 @@ const editarCliente = (cliente) => {
     store.dispatch('editarCliente', cliente)
     formAberto.value = false
   }
+}
+
+const deletarCliente = (clienteId) => {
+  store.dispatch('deletarCliente', clienteId)
+  clientesRenderizados.value = [...clientes.value]
 }
 </script>
 <template>
@@ -47,10 +53,11 @@ const editarCliente = (cliente) => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="cliente in clientes" :key="cliente.id">
+        <tr v-for="cliente in clientesRenderizados" :key="cliente.id">
           <td scope="row">
             {{ cliente.ativo }}
             <button class="btn btn-info" @click="abrirFormularioEdicao(cliente)">Editar</button>
+            <button class="btn btn-danger" @click="deletarCliente(cliente.id)">Deletar</button>
           </td>
           <td>{{ cliente.nome }}</td>
           <td>{{ cliente.telefone }}</td>

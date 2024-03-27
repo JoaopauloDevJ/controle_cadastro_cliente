@@ -13,6 +13,12 @@ export default createStore({
       if (index !== -1) {
         state.clientes.splice(index, 1, clienteEditado)
       }
+    },
+    DELETAR_CLIENTE(state, clienteId) {
+      const index = state.clientes.findIndex((cliente) => cliente.id === clienteId)
+      if (index !== -1) {
+        state.clientes.splice(index, 1)
+      }
     }
   },
   actions: {
@@ -21,6 +27,9 @@ export default createStore({
     },
     editarCliente({ commit }, cliente) {
       commit('EDITAR_CLIENTE', cliente)
+    },
+    deletarCliente({ commit }, clienteId) {
+      commit('DELETAR_CLIENTE', clienteId)
     }
   },
   getters: {
