@@ -7,7 +7,7 @@ const store = useStore()
 const clientes = computed(() => store.getters.clientes)
 </script>
 <template>
-  <div class="container">
+  <div class="container table-responsive">
     <h2 class="title">Clientes</h2>
     <table class="table">
       <thead>

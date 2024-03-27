@@ -17,10 +17,10 @@ function mostrarComponente(componente) {
 </script>
 <template>
   <body>
+    <header class="header mb-5">
+      <h1 class="header_title pt-3 pb-3">Cadastro de clientes e seus produtos!</h1>
+    </header>
     <div class="container_pagina">
-      <header class="header mb-5">
-        <h1 class="header_title pt-3 pb-3">Cadastro de clientes e seus produtos!</h1>
-      </header>
       <div class="container">
         <CadastraCliente />
         <div class="buttons">

@@ -7,7 +7,7 @@ const store = useStore()
 const clientes = computed(() => store.getters.clientes)
 </script>
 <template>
-  <div class="container">
+  <div class="container table-responsive">
     <h2 class="title">Produtos</h2>
     <table class="table">
       <thead>
@@ -18,8 +18,8 @@ const clientes = computed(() => store.getters.clientes)
       </thead>
       <tbody>
         <tr v-for="cliente in clientes" :key="cliente.id">
-          <td>{{ cliente.nomeProduto }}</td>
           <td>{{ cliente.produtoAtivo }}</td>
+          <td>{{ cliente.nomeProduto }}</td>
         </tr>
       </tbody>
     </table>
@@ -30,5 +30,11 @@ const clientes = computed(() => store.getters.clientes)
 
 .title {
   @include styleTitle();
+}
+
+.table {
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 }
 </style>
