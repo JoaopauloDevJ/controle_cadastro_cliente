@@ -33,3 +33,18 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Dependencies used in the project:
+```
+ESlint, Vite, Prettier, uuid, Vuex
+```
+
+### CSS preprocessor used:
+```
+SASS/SCSS
+```
+
+### Libraries used:
+```
+Bootstrap
+```
