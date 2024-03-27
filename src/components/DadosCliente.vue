@@ -22,7 +22,7 @@ const editarCliente = (cliente) => {
 <template>
   <div class="container table-responsive">
     <h2 class="title">Clientes</h2>
-    <p>Para alterar o status do seu cliente e o produto, basta clicar em editar.</p>
+    <p>Para alterar o status do seu cliente e o produto do mesmo, basta clicar em editar.</p>
     <FormularioEdicao
       v-if="formAberto"
       :cliente="clienteEditando"
@@ -42,7 +42,8 @@ const editarCliente = (cliente) => {
       <tbody>
         <tr v-for="cliente in clientes" :key="cliente.id">
           <td scope="row">
-            {{ cliente.ativo }} <button @click="abrirFormularioEdicao(cliente)">Editar</button>
+            {{ cliente.ativo }}
+            <button class="btn btn-info" @click="abrirFormularioEdicao(cliente)">Editar</button>
           </td>
           <td>{{ cliente.nome }}</td>
           <td>{{ cliente.telefone }}</td>
