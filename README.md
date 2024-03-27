@@ -1,6 +1,10 @@
 # teste_data_stone
 
-This template should help get you started developing with Vue 3 in Vite.
+Primeiramente iniciei todo projeto com VueJS, instalando frameworks como Prettier(Para formtação do meu código, deixando-o mais limpo e legível para todos), ESlint(Para ajudar em possíveis erros no meu código antes de colocar em produção).
+Iniciei a instação do Bootstrap para auxiliar no visual de todo sistema, instalando logo em seguida o SCSS para ajudar no processamento do CSS.
+Adicionei o Vuex para auxiliar no estado da aplicação, principalmente em relação com adicionar, editar e deletar um cliente. Como consequência disso não utilizei nenhum banco de dados para salvar os dados do cliente, deixei apenas no servidor local mesmo.
+
+Para iniciar a aplicação no seu localhost, acesse 'Teste_data_stone\teste_data_stone>' e digite o comando 'npm run dev'. Certifique-se de ter o npm(Node Package Manager).
 
 ## Recommended IDE Setup
 
